@@ -128,15 +128,11 @@ const addProduct=(product)=>{
               >
                 Add to Cart
               </button>
-              <button className="m-5 btn btn-dark px-4 py-2">Go to cart</button>
-              {/* <NavLink
-                to="/cart"
-                className="btn btn-dark ms-2 px-4 py-2 go-to-cart"
-                style={{ textDecoration: "none" }}
-              >
-                Go to Cart
+              <button className="m-5 btn btn-dark px-4 py-2" onClick={()=>{
+                navigate("/shoppingcartpage")
 
-              </NavLink> */}
+              }}>Go to cart</button>
+          
             </div>
           </div>
         </div>

@@ -62,3 +62,13 @@ export const getTotalStart = () => ({
 export const occuredError = () => ({
   type: types.OCCURED_ERROR,
 });
+
+export const createOrder=(order)=>({
+  type:types.CREATE_ORDER,
+  payload:order
+})
+
+export const creatOrdertostart = (order)=>({
+  type:types.CREATE_ORDER_START,
+  payload:order
+})

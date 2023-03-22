@@ -29,7 +29,7 @@ function NavbarComp() {
               ) : (
                 <Nav.Link
                   as={Link}
-                  to="/login"
+                  to="/shoppingcartpage"
   
                 >
                   <i className="fa fa-shopping-cart"></i>

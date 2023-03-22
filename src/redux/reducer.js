@@ -46,7 +46,6 @@ const reducer = (state = initialState, action) => {
         action.payload.stock > 0
           ? state.cart.push({ ...action.payload, quantity: 1 })
           : toast.error("Out of Stock", { autoClose: 7000 });
-           
       }
 
       break;
@@ -98,6 +97,18 @@ const reducer = (state = initialState, action) => {
       state.carttotalquantity = quantity;
       state.carttotalamount = total;
     }
+
+    case types.CREATE_ORDER_START:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+
+    case types.OCCURED_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return {
         ...state,

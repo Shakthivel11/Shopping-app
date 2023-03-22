@@ -5,13 +5,13 @@ import {
     all,
     fork,
     call,
-    take,
+
   } from "redux-saga/effects";
   import {
-    loadproductSuccess,loadproductError, occuredError
+    loadproductSuccess,loadproductError, occuredError,creatOrdertostart
   } from "../redux/action";
 import * as types from "../redux/actiontypes";
-import { loadproductapi } from "./api";
+import { loadproductapi,creatorderApi } from "./api";
 
 
 function* onLoadProductStartAsync(){
@@ -91,24 +91,23 @@ export function* onDeletetoCart() {
   }
   
   
-//   export function* onCreateOrderStartAsync({ payload }) {
-//     try {
-//       console.log("in sagas")
-//       const response = yield call(createOrderApi, payload);
+  export function* onCreateOrderStartAsync({ payload }) {
+    try {
+      console.log("In saga create,")
+      const response = yield call( creatorderApi,payload);
+
+      console.log("order response", response.data);
+      if (response.status === 200) {
+        yield put(creatOrdertostart(response.data));
   
-//       console.log("order response", response.data);
-//       if (response.status === 200) {
-//         // yield [put({ createOrderStart, response })];
-//         yield put(createOrderStart(response.data));
-//         // console.log(response.data)
-//       }
-//     } catch (error) {
-//       yield put(occuredError(error.response));
-//     }
-//   }
-//   export function* onCreateOrder(){
-//     yield takeLatest(types.CREATE_ORDER,onCreateOrderStartAsync);
-//   }
+      }
+    } catch (error) {
+      yield put(occuredError(error.response));
+    }
+  }
+  export function* onCreateOrder(){
+    yield takeLatest(types.CREATE_ORDER,onCreateOrderStartAsync);
+  }
   
   
 const productsagas =[
@@ -118,6 +117,7 @@ const productsagas =[
     fork(onDecrementCart),
     fork(onClearCart),
     fork(onGetTotal),
+    fork(onCreateOrder),
 ];
 
 export default function* rootSaga() {

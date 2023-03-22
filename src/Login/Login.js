@@ -8,7 +8,6 @@ function Login(props) {
     username: "sakthi@gmail.com",
     password: "sakthi123",
   };
-  const [disable, setDisabled] = useState(true);
   const [username, setUserName] = useState(false);
   const [password, setPassword] = useState("");
   const [nameError, setNameError] = useState("");
@@ -32,7 +31,6 @@ function Login(props) {
     if (password !== user.password) {
       setPassError("Enter Password");
       setPassword(false);
-      // setDisabled(!nameError)
       setNameError()
     } else {
       setPassword(true);
